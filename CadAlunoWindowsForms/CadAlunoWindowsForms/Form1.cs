@@ -39,7 +39,7 @@ namespace CadAlunoWindowsForms
             {
                MessageBox.Show(erro.Message);     
             }
-
+            // oi 
         }
     }
 }
