@@ -19,7 +19,7 @@ namespace CadAlunoWindowsForms
             InitializeComponent();
         }
 
-        
+
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -37,9 +37,47 @@ namespace CadAlunoWindowsForms
             }
             catch (Exception erro)
             {
-               MessageBox.Show(erro.Message);     
+                MessageBox.Show(erro.Message);
             }
             // oi 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AlunoViewModel aluno = new AlunoViewModel();
+                aluno.Id = Convert.ToInt32(txtID.Text);
+
+                AlunoDAO dao = new AlunoDAO();
+                dao.Delete(aluno);
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AlunoViewModel aluno = new AlunoViewModel();
+                aluno.Id = Convert.ToInt32(txtID.Text);
+                aluno.Nome = txtNome.Text;
+                aluno.Mensalidade = Convert.ToDouble(txtMensalidade.Text);
+                aluno.DataNascimento = Convert.ToDateTime(TxtNascimento.Text);
+                aluno.CidadeId = Convert.ToInt32(txtCidade.Text);
+
+                AlunoDAO dao = new AlunoDAO();
+                dao.Update(aluno);
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(erro.Message);
+            }
+
         }
     }
 }

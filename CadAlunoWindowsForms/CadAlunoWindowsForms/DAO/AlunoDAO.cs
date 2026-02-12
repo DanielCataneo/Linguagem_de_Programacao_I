@@ -41,6 +41,41 @@ namespace CadAlunoWindowsForms.DAO
                 {
                     conexao.Close();
                 }
+
+            
+            }
+            public void Delete(AlunoViewModel aluno)
+            {
+                SqlConnection conexao = ConexaoBD.GetConexao();
+                try
+                {
+                    string sql = string.Format("Delete from alunos where Id = {0}", aluno.Id);
+                    SqlCommand comando = new SqlCommand(sql, conexao);
+                    comando.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexao.Close();
+                }
+            }
+
+            public void Update(AlunoViewModel aluno)
+            {
+                SqlConnection conexao = ConexaoBD.GetConexao();
+
+                try
+                {
+                    string sql = string.Format("set dateformat dmy; UPDATE alunos SET nome = '{0}', mensalidade = {2}," +
+                                               "cidadeId={3},  dataNascimento='{4}' Where Id = {1}"
+                                                ,aluno.Nome,aluno.Id,aluno.Mensalidade,aluno.CidadeId,
+                                                aluno.DataNascimento);
+                    SqlCommand comando = new SqlCommand(sql, conexao);
+                    comando.ExecuteNonQuery();
+                }
+                finally
+                {
+                    conexao.Close();
+                }
             }
         }
     }
