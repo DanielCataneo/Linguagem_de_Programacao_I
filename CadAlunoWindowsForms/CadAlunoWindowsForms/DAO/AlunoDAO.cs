@@ -37,13 +37,14 @@ namespace CadAlunoWindowsForms.DAO
                 }
 
      
-            finally 
+                finally 
                 {
                     conexao.Close();
                 }
 
             
             }
+           
             public void Delete(AlunoViewModel aluno)
             {
                 SqlConnection conexao = ConexaoBD.GetConexao();
@@ -65,7 +66,8 @@ namespace CadAlunoWindowsForms.DAO
 
                 try
                 {
-                    string sql = string.Format("set dateformat dmy; UPDATE alunos SET nome = '{0}', mensalidade = {2}," +
+                    string sql = string.Format("set dateformat dmy; " +
+                                               "UPDATE alunos SET nome = '{0}', mensalidade = {2}," +
                                                "cidadeId={3},  dataNascimento='{4}' Where Id = {1}"
                                                 ,aluno.Nome,aluno.Id,aluno.Mensalidade,aluno.CidadeId,
                                                 aluno.DataNascimento);
